@@ -82,7 +82,7 @@ void leer_consola(t_log* logger)
 	// La primera te la dejo de yapa
 	leido = readline("> ");
 
-	while(leido[0] != '/0' && leido !=NULL){
+	while(leido[0] != '\0' && leido !=NULL){
 		log_info(logger,"%s",leido);
 		free(leido);
 		leido = readline("> ");
@@ -105,7 +105,7 @@ void paquete(int conexion)
 	// Leemos y esta vez agregamos las lineas al paquete
 	leido = readline(">");
 
-	while(leido[0]!= '/0' && leido != NULL) {
+	while(leido[0]!= '\0' && leido != NULL) {
 
 		agregar_a_paquete(paquete, leido, strlen(leido)+1);
 		free(leido);
