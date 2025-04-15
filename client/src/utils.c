@@ -29,12 +29,20 @@ int crear_conexion(char *ip, char* puerto)
 
 	err = getaddrinfo(ip, puerto, &hints, &server_info);
 
+	if(err != 0){
+		error_show("No se pudo traducir en getaddrinfo");
+		abort();
+	}
 	// Ahora vamos a crear el socket.
 	int socket_cliente = socket(server_info->ai_family,server_info->ai_socktype,server_info->ai_protocol);
 
 	// Ahora que tenemos el socket, vamos a conectarlo
 	err = connect(socket_cliente,server_info->ai_addr,server_info->ai_addrlen);
 
+	if(err != 0){
+		error_show("No se pudo conectar al servidor");
+		abort();
+	}
 
 	freeaddrinfo(server_info);
 	//?? esta bien
